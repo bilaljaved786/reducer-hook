@@ -1,23 +1,22 @@
-import logo from './logo.svg';
 import './App.css';
+import { addNumber, MinusNumber } from './ReducerHookSetup/action';
+import { useReducer } from 'react';
+import AddMinusReducer from './ReducerHookSetup/reducer';
 
 function App() {
+
+  // for small state use [usestate hook]
+  // if we have multiple states we can manage in this way using useReducer hook
+
+  // using reducer hooks here for state management
+  // returning dispatch method reference
+  const [state, dispatch] = useReducer(AddMinusReducer, 10);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>{state}</h1>
+      <button onClick={() => dispatch(addNumber())}>Add</button> &nbsp;
+      <button onClick={() => dispatch(MinusNumber())}>Minus</button>
     </div>
   );
 }
